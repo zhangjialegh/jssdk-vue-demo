@@ -26,13 +26,19 @@ export default {
       let c = url.indexOf('?') === -1 ? '?' : '&'
       request.url = `${url}${c}_t=${parseInt(new Date().getTime() / 1000, 10)}`
 
+      if (request.autoLoading) {
+        Vue.global.loading()
+      }
+
       return request
     }, error => Promise.reject(error))
 
     axios.interceptors.response.use(function (response) {
+      if (response.config.autoLoading) {
+        Vue.global.unloading()
+      }
       return response
     }, function (error) {
- 
       let response = error.response
       if (response) {
         let data = response.data || {}

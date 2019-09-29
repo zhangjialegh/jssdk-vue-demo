@@ -1,5 +1,5 @@
 export default {
-  install(Vue, options) {
+  install(Vue) {
     Vue.global = Vue.prototype.$global = {
       /**
        * 等待提示
