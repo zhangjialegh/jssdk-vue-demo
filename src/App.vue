@@ -53,6 +53,10 @@ export default {
         vm.alertParam = param
         vm.showAlert = !!param && !!param.msg
       }, vm)
+      Vue.eventBus.$on('toast', (param) => {
+        vm.toastParam = param
+        vm.showToast = !!param && !!param.msg
+      }, vm)
       Vue.eventBus.$on('confirm', (param) => {
         param.hideOnBlur = param.hideOnBlur === true
         vm.confirmParam = param

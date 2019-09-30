@@ -53,8 +53,8 @@ export default {
           Vue.global.clearAccount()
           Vue.router.replace({path: 'home'})
         } else {
-          if (data.message) {
-            Vue.global.toast({ msg: data.message, width: '70%', mask: false })
+          if (data.msg) {
+            Vue.global.toast({ msg: data.msg, width: '70%', mask: false })
           } else {
             Vue.global.toast({ msg: '请求超时', width: '70%', time: 4000, mask: false })
           }
