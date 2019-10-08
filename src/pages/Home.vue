@@ -1,7 +1,12 @@
 <template>
   <div>
+    <div class="avatar-box" v-if="avatar">
+      <img :src="avatar" alt="" class="avatar">
+    </div>
     <button @click="getToken">获取token</button>
-    <button @click="wxLogin">登录</button>
+    <br/>
+    <button @click="loginOut" v-if="isLogin">退出</button>
+    <button @click="wxLogin" v-else>登录</button>
   </div>
 </template>
 <script>
@@ -10,6 +15,14 @@ export default {
   data() {
     return {
 
+    }
+  },
+  computed: {
+    avatar () {
+      return this.$store.state.account.wechatAvatarUri || ''
+    },
+    isLogin () {
+      return !!this.$store.state.account.thirdSession
     }
   },
   methods: {
@@ -64,10 +77,24 @@ export default {
       .then(res=> {
         location.href = res.data.data
       })
+    },
+    loginOut() {
+      this.$store.commit('account', {})
+      localStorage.clear()
     }
   }
 }
 </script>
 <style lang="less">
-  
+  .avatar-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 20px auto;
+    > img {
+      width: 100%;
+      height: 100%;
+    }
+  }
 </style>
