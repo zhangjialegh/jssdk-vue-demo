@@ -97,6 +97,14 @@ export default {
       confirm: function (param) {
         Vue.eventBus.$emit('confirm', param)
       },
+      isWechat () {
+        const ua = navigator.userAgent.toLocaleLowerCase()
+        if (ua.includes('micromessenger')) {
+          return true
+        } else {
+          return false
+        }
+      },
       clearAccount () {
         localStorage.clear()
       }

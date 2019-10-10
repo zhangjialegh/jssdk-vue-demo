@@ -1,5 +1,5 @@
 const hostname = location.hostname
-export let api = 'http://localhost:8080'
+export let api = 'http://127.0.0.1:8080'
 
 if (hostname.includes('210yy.cn')) {
   api = 'https://'+hostname
